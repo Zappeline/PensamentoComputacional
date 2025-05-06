@@ -10,11 +10,11 @@ class Contas:
     def depositar(self, valor):
         if valor > 0:
             self.saldo += valor
-         else:
+        else:
             print(f"O {valor} é inválido para depósito.")   
 
     def sacar(self, valor):
-        if valor <= self.saldo:
+        if valor <= self.saldo: #Com saldo 
             self.saldo -= valor
             self.historico.append()
             print(f"Saque de {valor} realizado com sucesso.")
