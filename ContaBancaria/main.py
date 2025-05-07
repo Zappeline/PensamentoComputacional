@@ -1,13 +1,10 @@
 from models.contas import Contas
 
-Lucas = Contas(nome_conta="Lucas Zappeline", saldo=1000, limite=500, historico=[])
+Lucas = Contas("Lucas Zappeline", 1000, 500, [])
 
-Lucas.depositar(500)
-Lucas.depositar(500)
-Lucas.depositar(500)
-Lucas.sacar(200)
-Lucas.historico
-Lucas.transferir(200, "Conta do João")
+Ana = Contas("Ana Maria", 100, 50, [])
 
-Lucas.historico
-Lucas.saldo()
+Lucas.depositar(150)
+Lucas.exibir_historico()
+Lucas.sacar(100)
+Lucas.exibir_historico()
