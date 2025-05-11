@@ -7,3 +7,6 @@ gol.acelerar()
 gol.mostrar_infos()
 gol.frear()
 gol.mostrar_infos()
+
+
+

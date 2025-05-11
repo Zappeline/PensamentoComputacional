@@ -38,4 +38,3 @@ class Veiculos:
 
     def alterar_longetude(self, longetude):
         self.longetude = longetude
-
