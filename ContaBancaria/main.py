@@ -1,5 +1,7 @@
+import time
 from models.contas import Contas
-import time as dt
+
+
 # from datetime import datetime
 
 
@@ -97,8 +99,26 @@ while True:
                     print(f"Historico de {conta.titular}:")
                     exibir_historico = conta.historico
                     for i in exibir_historico:
-                        print(f"Operação: {i['operacao']}, Remetente: {i['remetente']}, Destinatário: {i['destinatario']}, Valor: {i['valor']}, Saldo: {i['saldo']}, Data e Hora:",
-                              f"{data_e_tempo.tm_mday}/{data_e_tempo.tm_mon}/{data_e_tempo.tm_year} - {str(data_e_tempo.tm_hour)}:{str(data_e_tempo.tm_min)}:{str(data_e_tempo.tm_sec)}")
+                        dt = time.localtime(i["data_e_tempo"])
+                        print(f"Op:", i["operacao"],
+                              "- Remetente:", i["remetente"],
+                              "- Destinatario:", i["destinatario"],
+                              "- Valor:", i["valor"],
+                              "- Saldo:", i["saldo"],
+                              "- Data e hora:", time.strftime("%d/%m/%Y %H:%M:%S", dt))
+                else:   
+                    resposta = input("Conta não encontrada! Deseja consultar novamente? s/n")
+                    if resposta == "s":
+                        break
+                    else:
+                        print("Programa encerrado!")
+
+        if funcao == 7:
+            titular = input("Informe o nome do titular da conta que deseja excluir:")
+            for conta in banco:
+                if conta.titular == titular:
+                    banco.remove(conta)
+                    print(f"Conta de {titular} excluída com sucesso!")
                 else:
                     resposta = input("Conta não encontrada! Deseja consultar novamente? s/n")
                     if resposta == "s":
