@@ -21,8 +21,10 @@ while True:
             titular = input("Favor informar o nomê do titular:")
             saldo = 0
             limite = 100
+            historico = []
+            conta = Contas(titular, saldo, limite, historico)
             print(f"Conta criada com sucesso!, Você iniciou sua conta com um valor de: {limite} R$ de limite!")
-            banco.append(Contas(titular, saldo, limite, []))
+            banco.append(conta)
 
             for conta in banco:
                 if conta.titular == titular:
@@ -47,9 +49,9 @@ while True:
                 if conta.titular == titular:
                     if valor > conta.saldo:
                         print("Valor maior que o saldo, saque não realizado!")
-                        conta.valor -= conta.saldo
                     else:
                         conta.sacar(valor)
+                        conta.saldo -= valor
                         print(f"Você sacou R$ {valor} da sua conta, seu saldo atual é de R$ {conta.saldo}")
                 else:
                     resposta = input("Conta não encontrada! Deseja consultar novamente? s/n")
@@ -66,12 +68,13 @@ while True:
                     conta.depositar(valor)
                     print(f"Você depositou R$ {valor} na sua conta, seu saldo atual é de R$ {conta.saldo}")
                     conta.saldo += valor
-            else:
-                resposta = input("Conta não encontrada! Deseja consultar novamente? s/n")
-                if resposta == "s":
-                    break
                 else:
-                    print("Programa encerrado!")
+                    resposta = input("Conta não encontrada! Deseja consultar novamente? s/n:")
+                    if resposta == "s":
+                        break
+                    else:
+                        print("Programa encerrado!")
+           
         
         if funcao == 5:
             titular = input("Informe o nome do titular da conta que deseja transferir:")
