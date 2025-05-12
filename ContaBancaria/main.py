@@ -66,12 +66,12 @@ while True:
                     conta.depositar(valor)
                     print(f"Você depositou R$ {valor} na sua conta, seu saldo atual é de R$ {conta.saldo}")
                     conta.saldo += valor
+            else:
+                resposta = input("Conta não encontrada! Deseja consultar novamente? s/n")
+                if resposta == "s":
+                    break
                 else:
-                    resposta = input("Conta não encontrada! Deseja consultar novamente? s/n")
-                    if resposta == "s":
-                        break
-                    else:
-                        print("Programa encerrado!")
+                    print("Programa encerrado!")
         
         if funcao == 5:
             titular = input("Informe o nome do titular da conta que deseja transferir:")
@@ -79,8 +79,11 @@ while True:
             destinatario = input("Informe o nome do destinatário:")
             for conta in banco:
                 if conta.titular == titular:
-                    conta.sacar(valor, destinatario)
-                    conta.saldo -= valor
+                    if valor > conta.saldo:
+                        print("Valor maior que o saldo, transferencia não realizada!")
+                    else:
+                        conta.transferir(valor, destinatario)
+                        conta.saldo -= valor
                     for conta_destinatario in banco:
                         if conta_destinatario.titular == destinatario:
                             conta_destinatario.depositar(valor, titular)
