@@ -21,23 +21,25 @@ while True:
     if funcao > 0 and funcao < 7:
         if funcao == 1:
             titular = input("Favor informar o nomê do titular:")
+            chavepix_1= input("Favor informar a chave pix 1:")
+            chavepix_2= input("Favor informar a chave pix 2:")
+            chavepix_3= input("Favor informar a chave pix 3:")
             saldo = 0
             limite = 100
             historico = []
-            conta = Contas(titular, saldo, limite, historico)
+            conta = Contas(titular, saldo, limite, [], [chavepix_1, chavepix_2, chavepix_3])
             print(f"Conta criada com sucesso!, Você iniciou sua conta com um valor de: {limite} R$ de limite!")
-            banco.append(conta)
-            
 
+            banco.append(conta)
             for conta in banco:
-                if conta.titular == titular:
+                if conta.getTitular() == titular:
                     print(f"O {titular} tem R$ {conta.saldo} em conta! e {limite} R$ de limite!")
 
         if funcao == 2:
             titular = input("Informe o nome do titular da conta que deseja ver o saldo:")
             for conta in banco:
-                if conta.titular == titular:
-                    print(f"O {titular} tem R$ {conta.saldo} em conta! e {limite} R$ de limite!")
+                if conta.getTitular() == titular:
+                    print(conta)
                 else:
                     resposta = input("Conta não encontrada! Deseja consultar novamente? s/n:")
                     if resposta == "s":
@@ -49,7 +51,7 @@ while True:
             titular = input("Informe o nome do titular da conta que deseja sacar:")
             valor = float(input("Informe o valor que deseja sacar:"))
             for conta in banco:
-                if conta.titular == titular:
+                if conta.getTitular() == titular:
                     if valor > conta.saldo:
                         print("Valor maior que o saldo, saque não realizado!")
                     else:
@@ -67,7 +69,7 @@ while True:
             titular = input("Informe o nome do titular da conta que deseja depositar:")
             valor = float(input("Informe o valor que deseja depositar:"))
             for conta in banco:
-                if conta.titular == titular:
+                if conta.getTitular() == titular:
                     conta.depositar(valor)
                     print(f"Você depositou R$ {valor} na sua conta, seu saldo atual é de R$ {conta.saldo}")
                     conta.saldo += valor
@@ -84,7 +86,7 @@ while True:
             valor = float(input("Informe o valor que deseja transferir:"))
             destinatario = input("Informe o nome do destinatário:")
             for conta in banco:
-                if conta.titular == titular:
+                if conta.getTitular() == titular:
                     if valor > conta.saldo:
                         print("Valor maior que o saldo, transferencia não realizada!")
                     else:
@@ -104,8 +106,8 @@ while True:
         if funcao == 6:
             titular = input("Informe o nome do titular da conta que deseja ver o histórico:")
             for conta in banco:
-                if conta.titular == titular:
-                    print(f"Historico de {conta.titular}:")
+                if conta.getTitular() == titular:
+                    print(f"Historico de {conta.getTitular()}:")
                     exibir_historico = conta.historico
                     for i in exibir_historico:
                         dt = time.localtime(i["data_e_tempo"])
@@ -125,7 +127,7 @@ while True:
         if funcao == 7:
             titular = input("Informe o nome do titular da conta que deseja excluir:")
             for conta in banco:
-                if conta.titular == titular:
+                if conta.getTitular() == titular:
                     banco.remove(conta)
                     print(f"Conta de {titular} excluída com sucesso!")
                 else:

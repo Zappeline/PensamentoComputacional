@@ -9,18 +9,26 @@ class Contas:
 
     '''
 
-    def __init__(self, titular:str, saldo: float, limite: float, historico: list) -> None:  
+    def __init__(self, titular:str, saldo: float, limite: float, historico: list, chavepix:list) -> None:  
         ''' 
         Construtor da classe ContaBancaria
         ''' 
         self.__limite = limite
         self.__titular = titular
         self.__saldo = saldo
+        self.__chavepix = chavepix
         self.__historico = historico
         
 
     def __str__(self)-> None:
-        return f"Titular: {self.__titular}, Saldo: {self.__saldo}, Limite: {self.__limite}"
+        return f"Titular: {self.__titular}, Saldo: {self.__saldo}, Limite: {self.__limite}, Chave Pix: {self.__chavepix}"
+    
+    def getSaldo(self) -> float:
+        '''
+        Objetivo: Método que retorna o saldo da conta bancaria.
+        return: saldo (float)
+        '''
+        return self.__saldo
 
     def getTitular(self) -> str:
         '''
@@ -109,6 +117,12 @@ class Contas:
                    "- Data e Hora:", (f"{dt.tm_mday}/{dt.tm_mon}/{dt.tm_year}"), "-", #1° Maneira de formatar
                    str(dt.tm_hour) + ":" + str(dt.tm_min) + ":" + str(dt.tm_sec))     #2° Maneira de formatar
     
+    def getChavePix(self) -> list:
+        '''
+        Objetivo: Método que retorna a chave pix da conta bancaria.
+        return: chavepix (list)
+        '''
+        return self.__chavepix
         
 
 
