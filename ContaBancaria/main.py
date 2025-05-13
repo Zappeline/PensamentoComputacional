@@ -7,6 +7,11 @@ from models.contas import Contas
 
 banco = []
 
+Lucas = Contas("Lucas", 1000, 100, [], ["044.171.580-02"])
+banco.append(Lucas)
+Leo = Contas("Leo", 100, 100, [], ["97768616"])
+banco.append(Leo)
+
 print("Bem-vindo!")
 
 print("Sistema Bancário:")
@@ -14,11 +19,11 @@ print("Sistema Bancário:")
 while True:
     funcao = int(input("Menu bancario, digite a ação que deseja efetuar:\n" \
                 "1- Criar conta\n2- Exibir saldo\n3- Sacar\n4- Depositar\n" \
-                "5- Realizar transferencia\n6- Exibir historico\n7- Excluir conta\n"
-                "8- Sair\n"
+                "5- Realizar transferencia\n6- Exibir historico\n7- Excluir conta\n8- Enviar via pix\n"
+                "9- Sair\n"
                 "Informe a opção:"))
 
-    if funcao > 0 and funcao < 7:
+    if funcao > 0 and funcao < 9:
         if funcao == 1:
             titular = input("Favor informar o nomê do titular:")
             chavepix_1= input("Favor informar a chave pix 1:")
@@ -37,15 +42,18 @@ while True:
 
         if funcao == 2:
             titular = input("Informe o nome do titular da conta que deseja ver o saldo:")
+            encontrou = False
             for conta in banco:
                 if conta.getTitular() == titular:
+                    encontrou = True
                     print(conta)
+            if not encontrou:
+                resposta = input("Conta não encontrada! Deseja consultar novamente? s/n:")
+                if resposta == "s":
+                    break
                 else:
-                    resposta = input("Conta não encontrada! Deseja consultar novamente? s/n:")
-                    if resposta == "s":
-                        break
-                    else:
-                        print("Programa encerrado!")
+                    print("Programa encerrado!")
+                    break
 
         if funcao == 3:
             titular = input("Informe o nome do titular da conta que deseja sacar:")
@@ -64,6 +72,7 @@ while True:
                         break
                     else:
                         print("Programa encerrado!")
+                        break
         
         if funcao == 4:
             titular = input("Informe o nome do titular da conta que deseja depositar:")
@@ -85,8 +94,10 @@ while True:
             titular = input("Informe o nome do titular da conta que deseja transferir:")
             valor = float(input("Informe o valor que deseja transferir:"))
             destinatario = input("Informe o nome do destinatário:")
+            encontrou = False
             for conta in banco:
                 if conta.getTitular() == titular:
+                    encontrou = True
                     if valor > conta.saldo:
                         print("Valor maior que o saldo, transferencia não realizada!")
                     else:
@@ -136,21 +147,34 @@ while True:
                         break
                     else:
                         print("Programa encerrado!")
+
+        if funcao == 8:
+            titular = input("Informe o nome da sua conta titular:")
+            for conta in banco:
+                if conta.getTitular() == titular:
+                    chavepix = input("Informe a chave pix do destinatário:")
+                    valor = float(input("Informe o valor que deseja transferir:"))
+                    if valor > conta.getSaldo():
+                        print("Valor maior que o saldo, transferencia não realizada!")
+                    else:
+                        encontrou = False
+                        for conta_destinatario in banco:
+                            for chave in conta_destinatario.getChavePix():
+                                if chave == chavepix:
+                                    encontrou = True
+                                    conta.sacar(valor,titular)
+                                    conta_destinatario.depositar(valor, titular)
+                                    print(f"Você enviou R$ {valor} via pix para {conta_destinatario.getTitular()}, seu saldo atual é de R$ {conta.getSaldo()}")
+                        if not encontrou:
+                            resposta = input("Conta não encontrada! Deseja consultar novamente? s/n:")
+                            if resposta == "s":
+                                break
+                            else:
+                                print("Programa encerrado!")
+                                break
+
                     
-    if funcao == 8:
-        print("Sistema encerrado!")
-        break
-
-    else:
-        print("Opção inválida! Tente novamente.")
-        resposta = input("Deseja consultar novamente? s/n:")
-        if resposta == "s":
-            continue
-        else:
-            print("Programa encerrado!")
-            break
-
-
+    
         
         
 
