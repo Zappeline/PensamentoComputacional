@@ -7,7 +7,9 @@ from models.contas import Contas
 
 banco = []
 
-print("Sistema Bancário")
+print("Bem-vindo!")
+
+print("Sistema Bancário:")
 
 while True:
     funcao = int(input("Menu bancario, digite a ação que deseja efetuar:\n" \
@@ -25,6 +27,7 @@ while True:
             conta = Contas(titular, saldo, limite, historico)
             print(f"Conta criada com sucesso!, Você iniciou sua conta com um valor de: {limite} R$ de limite!")
             banco.append(conta)
+            
 
             for conta in banco:
                 if conta.titular == titular:
@@ -132,10 +135,12 @@ while True:
                     else:
                         print("Programa encerrado!")
                     
-
+    if funcao == 8:
+        print
     if funcao == 8:
         print("Sistema encerrado!")
         break
+
 
 
 

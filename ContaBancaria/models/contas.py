@@ -9,16 +9,25 @@ class Contas:
 
     '''
 
-    def __init__(self, titular, saldo, limite, historico):
+    def __init__(self, titular:str, saldo: float, limite: float, historico: list) -> None:  
         ''' 
         Construtor da classe ContaBancaria
         ''' 
-        self.limite = limite
-        self.titular = titular
-        self.saldo = saldo
-        self.historico = historico
-
+        self.__limite = limite
+        self.__titular = titular
+        self.__saldo = saldo
+        self.__historico = historico
         
+
+    def __str__(self):
+        return f"Titular: {self.__titular}, Saldo: {self.__saldo}, Limite: {self.__limite}"
+
+    def getTitular(self):
+        '''
+        Objetivo: Método que retorna o titular da conta bancaria.
+        return: titular (str)
+        '''
+        return self.__titular
 
     def depositar(self, valor, remetente = None):
         '''
@@ -30,12 +39,12 @@ class Contas:
         if remetente != None:
             op = 2
         if valor > 0:
-            self.saldo += valor
-            self.historico.append({"operacao": op,
+            self.__saldo += valor
+            self.__historico.append({"operacao": op,
                                    "remetente": remetente,
-                                   "destinatario": self.titular,
+                                   "destinatario": self.__titular,
                                    "valor": valor,
-                                   "saldo": self.saldo,
+                                   "saldo": self.__saldo,
                                    "data_e_tempo": int(time.time())})
             return True
         else:
@@ -51,22 +60,22 @@ class Contas:
         op = 0 #Detecta que é uma transferencia e muda a operação para 2
         if destinatario != None:
             op = 2
-        if valor <= self.saldo: #Com saldo 
-            self.saldo -= valor
-            self.historico.append({"operacao": op,
-                                   "remetente": self.titular,
+        if valor <= self.__saldo: #Com saldo 
+            self.__saldo -= valor
+            self.__historico.append({"operacao": op,
+                                   "remetente": self.__titular,
                                    "destinatario": destinatario,
                                    "valor": valor,
-                                   "saldo": self.saldo,
+                                   "saldo": self.__saldo,
                                    "data_e_tempo": int(time.time())})
             print(f"Saque de {valor} realizado com sucesso.")
             return True
         
         else: #Sem saldo
-            a = print(f"Deseja utilizar o limite de (R${self.limite}) [s para sim]?")
+            a = print(f"Deseja utilizar o limite de (R${self.__limite}) [s para sim]?")
             if a == 's':
-                if (self.saldo + self.limite) >= valor:
-                    self.saldo -= valor
+                if (self.__saldo + self.__limite) >= valor:
+                    self.__saldo -= valor
                     print(f"Saque de {valor} realizado com sucesso.")
                 else:
                     print(f"Saldo insuficiente para o saque de {valor}.")
@@ -84,13 +93,13 @@ class Contas:
         # Se o saque ocorrer com sucesso.
         if self.sacar(valor, destinatario.titular): #Saca o valor da conta do remetente
             # Deposita o valor na conta do destinatario
-            destinatario.depositar(valor, self.titular) #Deposita o valor na conta do destinatario
+            destinatario.depositar(valor, self.__titular) #Deposita o valor na conta do destinatario
 
         
              
     def exibir_historico(self):
-        print(f"Historico de transações da conta {self.titular}:")
-        for transacao in self.historico:
+        print(f"Historico de transações da conta {self.__titular}:")
+        for transacao in self.__historico:
             dt = time.localtime(transacao["data_e_tempo"])
             print(f"Op:", transacao["operacao"],
                    "- Remetente:", transacao["remetente"],
