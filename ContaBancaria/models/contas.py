@@ -19,17 +19,17 @@ class Contas:
         self.__historico = historico
         
 
-    def __str__(self):
+    def __str__(self)-> None:
         return f"Titular: {self.__titular}, Saldo: {self.__saldo}, Limite: {self.__limite}"
 
-    def getTitular(self):
+    def getTitular(self) -> str:
         '''
         Objetivo: Método que retorna o titular da conta bancaria.
         return: titular (str)
         '''
         return self.__titular
 
-    def depositar(self, valor, remetente = None):
+    def depositar(self, valor: float, remetente: str = None):
         '''
         Objetivo: Método que implementar o depósito na conta bancaria.
         Entradas: valor (float) e remetente (str).
@@ -51,7 +51,7 @@ class Contas:
             print(f"O {valor} é inválido para depósito.")   
             return False
 
-    def sacar(self, valor, destinatario = None):
+    def sacar(self, valor: float, destinatario: str = None):
         '''
         Objetivo: Método que implementar o saque na conta bancaria.
         Entradas: valor (float) e destinatario (str)
@@ -83,7 +83,7 @@ class Contas:
                 print(f"Operação com limite cancelada.")
                 return False
             
-    def transferir(self, destinatario, valor):
+    def transferir(self, destinatario: str, valor: float) -> None:
         '''
         Objetivo: Método que implementar a transferência entre contas bancarias.
         Entradas: valor (float) e obj conta do destinatario
@@ -97,7 +97,7 @@ class Contas:
 
         
              
-    def exibir_historico(self):
+    def exibir_historico(self) -> None:
         print(f"Historico de transações da conta {self.__titular}:")
         for transacao in self.__historico:
             dt = time.localtime(transacao["data_e_tempo"])

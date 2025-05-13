@@ -39,7 +39,7 @@ while True:
                 if conta.titular == titular:
                     print(f"O {titular} tem R$ {conta.saldo} em conta! e {limite} R$ de limite!")
                 else:
-                    resposta = input("Conta não encontrada! Deseja consultar novamente? s/n")
+                    resposta = input("Conta não encontrada! Deseja consultar novamente? s/n:")
                     if resposta == "s":
                         break
                     else:
@@ -57,7 +57,7 @@ while True:
                         conta.saldo -= valor
                         print(f"Você sacou R$ {valor} da sua conta, seu saldo atual é de R$ {conta.saldo}")
                 else:
-                    resposta = input("Conta não encontrada! Deseja consultar novamente? s/n")
+                    resposta = input("Conta não encontrada! Deseja consultar novamente? s/n:")
                     if resposta == "s":
                         break
                     else:
@@ -96,7 +96,7 @@ while True:
                             conta_destinatario.saldo += valor
                             print(f"Você transferiu R$ {valor} para {destinatario}, seu saldo atual é de R$ {conta.saldo}")
                     else:
-                        resposta = input("Conta não encontrada! Deseja consultar novamente? s/n")
+                        resposta = input("Conta não encontrada! Deseja consultar novamente? s/n:")
                         if resposta == "s":
                             break
                         else:
@@ -116,7 +116,7 @@ while True:
                               "- Saldo:", i["saldo"],
                               "- Data e hora:", time.strftime("%d/%m/%Y %H:%M:%S", dt))
                 else:   
-                    resposta = input("Conta não encontrada! Deseja consultar novamente? s/n")
+                    resposta = input("Conta não encontrada! Deseja consultar novamente? s/n:")
                     if resposta == "s":
                         break
                     else:
@@ -129,20 +129,24 @@ while True:
                     banco.remove(conta)
                     print(f"Conta de {titular} excluída com sucesso!")
                 else:
-                    resposta = input("Conta não encontrada! Deseja consultar novamente? s/n")
+                    resposta = input("Conta não encontrada! Deseja consultar novamente? s/n:")
                     if resposta == "s":
                         break
                     else:
                         print("Programa encerrado!")
                     
     if funcao == 8:
-        print
-    if funcao == 8:
         print("Sistema encerrado!")
         break
 
-
-
+    else:
+        print("Opção inválida! Tente novamente.")
+        resposta = input("Deseja consultar novamente? s/n:")
+        if resposta == "s":
+            continue
+        else:
+            print("Programa encerrado!")
+            break
 
 
         
