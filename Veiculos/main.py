@@ -1,12 +1,17 @@
 from models.Veiculos import Veiculos
+from models.Caminhoes import Caminhoes
+from models.Motos import Motos
+from models.Carros import Carros
+from models.Frota import Frota
 
-gol = Veiculos("Gol Copa", "Volkswagen", "IND-1010", 2006, "Amarelo", 0, 0, 0)
+Focus = Carros("Focus", "Ford", "ABC1234", 2020)
 
-gol.mostrar_infos()
-gol.acelerar()
-gol.mostrar_infos()
-gol.frear()
-gol.mostrar_infos()
+
+
+Focus.litros_distancia(100)
+print(Focus)
+
+
 
 
 

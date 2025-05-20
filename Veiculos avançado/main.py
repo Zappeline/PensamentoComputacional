@@ -21,7 +21,7 @@ fusca_eletrico = CarroConvEletrico(placa="IAA0D36",           modelo="Fusca 1600
                                    nivel_bateria=65,          tipo_bateria="Lítio", 
                                    autonomia=150)
 
-''' informação (laranja) para não se perder'''
+''' informação (laranja), caso preferir para não se perder'''
 
 
 print(fusca_eletrico)
