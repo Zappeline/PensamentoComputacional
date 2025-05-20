@@ -1,9 +1,10 @@
 from .Caminhoes import Caminhoes
 from .Carros import Carros
 from .Motos import Motos
+from .Frota import Frota
 
 
-class Veiculos(Caminhoes, Motos, Carros):
+class Veiculos(Caminhoes, Motos, Carros, Frota):
 
     def __init__(self, modelo, marca, placa, ano, cor, velocidade, latitude, longetude): 
         self.modelo = modelo
@@ -21,6 +22,10 @@ class Veiculos(Caminhoes, Motos, Carros):
         self.distancia = 0
         Motos.__init__(self, modelo, marca, placa, ano, cor, 0, 0)
         self.distancia = 0
+        Frota.__init__(self,)
+        self.__veiculos = []
+
+       
         
         
 
