@@ -4,7 +4,7 @@ from .Motos import Motos
 from .Frota import Frota
 
 
-class Veiculos(Caminhoes, Motos, Carros, Frota):
+class Veiculos(Caminhoes, Motos, Carros):
 
     def __init__(self, modelo, marca, placa, ano, cor, velocidade, latitude, longetude): 
         self.modelo = modelo
@@ -21,22 +21,10 @@ class Veiculos(Caminhoes, Motos, Carros, Frota):
         Carros.__init__(self, modelo, marca, placa, ano, 0, 0)
         self.distancia = 0
         Motos.__init__(self, modelo, marca, placa, ano, cor, 0, 0)
-        self.distancia = 0
-        Frota.__init__(self,)
-        self.__veiculos = []
-
-       
         
-        
-
-
     def __str__(self):
         return f"{self.marca} {self.modelo} ({self.ano}) - Placa: {self.placa} - Cor: {self.cor} - Velocidade: {self.velocidade} km/h - Latitude: {self.latitude} - Longitude: {self.longetude}"
 
-
-
-        
-    
     def acelerar(self):
         self.velocidade += 10
         nova_latitude = self.latitude + 1
@@ -67,7 +55,9 @@ class Veiculos(Caminhoes, Motos, Carros, Frota):
     def alterar_longetude(self, longetude):
         self.longetude = longetude
 
-    def litros_distancia(self, distancia, consumo):
-        litros_distancia = distancia / consumo
-        return litros_distancia
+    def calcular_consumo(self, distancia):
+        calcular_consumo = distancia / 10
+        return calcular_consumo
     
+
+

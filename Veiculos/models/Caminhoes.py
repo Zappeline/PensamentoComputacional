@@ -8,8 +8,8 @@ class Caminhoes:
 
 
     def __str__(self):
-        return f"{self.marca} {self.modelo} ({self.ano}) - Capacidade de Carga: {self.capacidade_carga} kg {self.consumo} km/l {self.distancia} km"
+        return f"{self.marca} {self.modelo} ({self.ano}) - Capacidade de Carga: {self.capacidade_carga}"
     
-    def litros_distancia(self, distancia):
-        litros_distancia = distancia / 5
-        return print(f"Litros de combustível para {distancia} km: {litros_distancia} L")
+    def calcular_consumo(self, distancia):
+        calcular_consumo = distancia / 5
+        return print(f"Litros de combustível para {distancia} km: {calcular_consumo} L")

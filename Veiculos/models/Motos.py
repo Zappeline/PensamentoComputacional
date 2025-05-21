@@ -8,8 +8,8 @@ class Motos:
         self.distancia = distancia
         
     def __str__(self):
-        return f"{self.marca} {self.modelo} ({self.ano}):"
+        return f"{self.marca} {self.modelo} ({self.ano}): Placa: {self.placa}"
     
-    def litros_distancia(self, distancia):
-        litros_distancia = distancia / 20
-        return print(f"Litros de combustível para {distancia} km: {litros_distancia} L")
+    def calcular_consumo(self, distancia):
+        calcular_consumo = distancia / 20
+        return print(f"Litros de combustível para {distancia} km: {calcular_consumo} L")
