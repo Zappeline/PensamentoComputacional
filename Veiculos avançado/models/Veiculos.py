@@ -1,3 +1,4 @@
+
 class Veiculos:
     '''
     Classe com os principais funcionalidades do sistema de veiculos,
@@ -12,7 +13,6 @@ class Veiculos:
         self.__ano = ano
         self.__cor = cor
         self.__valor_fipe = valor_fipe
-
 
     def __str__(self) -> str:
         '''Retorna uma string com as informações do veiculo'''
@@ -41,4 +41,11 @@ class Veiculos:
         self.__valor_fipe = valor
         return True
     
-
+    def calcular_consumo(self, distancia: float) -> float:
+        '''
+        Objetivo: Método que calcula o consumo do veiculo.
+        distancia: distancia (float) : distancia percorrida
+        return: consumo (float)
+        '''
+        consumo = distancia / self.__consumo
+        return consumo
