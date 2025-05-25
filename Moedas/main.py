@@ -1,19 +1,19 @@
-from models.produtos import produtos
+from models.Produtos import Produtos
+from models.ProdutoAlimenticio import ProdutoAlimnticio 
+from models.ProdutoEletronico import ProdutoEletronico
 
-refrigerante = produtos("", 9.80, "BRL")
+refrigerante = Produtos("", 9.80, "BRL", "Alimenticio")
 
-print(refrigerante)
+pao = ProdutoAlimnticio ("Pão", 5.70, "BRL", "Alimenticio")
 
-refrigerante.get_nome() 
-
-print(refrigerante)
-
-refrigerante.set_nome("Guarana")
+radio = ProdutoEletronico("JBL", 59.60, "BRL", "Eletronico")
 
 print(refrigerante)
-
-refrigerante.set_preco(11)
-
+refrigerante.set_nome("guarana")
+print(pao)
+refrigerante.set_preco(9.99)
 print(refrigerante)
-
+pao.set_preco(9.99)
+print(pao)
+print(radio)
 
