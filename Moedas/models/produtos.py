@@ -4,7 +4,7 @@ class Produtos:
         self.__preco = preco
         self.__moeda = moeda
         self.__tipo = tipo
-
+        
     def __str__(self):
         '''Retorna uma string com as informações do Produto'''
         infos = "Informações do Produto:\n"

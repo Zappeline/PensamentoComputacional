@@ -1,6 +1,9 @@
 from models.Produtos import Produtos
 from models.ProdutoAlimenticio import ProdutoAlimnticio 
 from models.ProdutoEletronico import ProdutoEletronico
+from models.ConversorMoeda import ConversorMoeda
+
+conversor = ConversorMoeda(Produtos)
 
 refrigerante = Produtos("", 9.80, "BRL", "Alimenticio")
 
@@ -17,3 +20,6 @@ pao.set_preco(9.99)
 print(pao)
 print(radio)
 
+conversor.converte_preco_para_usd(refrigerante)
+
+print(refrigerante)
